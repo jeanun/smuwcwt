@@ -1,0 +1,585 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="后端开发,.net," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX这是我见过的混淆最多的一组概念。不过当去年AJAX技术如火如荼，AJAX框架层出不穷，而微软又推出ASP.NET AJAX框架之后，这四个概念之间的混淆也愈发严重起来了。我经常能看到这样的问题：
+
+我在用AJAX技术时不知道怎么在UpdatePanel里……
+我用AJAX.NET框架调用We">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX">
+<meta property="og:url" content="http://smuwcwt.com/2008/06/13/ajaxdotnet-aspdotnetajax/index.html">
+<meta property="og:site_name" content="我的职业生涯">
+<meta property="og:description" content="AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX这是我见过的混淆最多的一组概念。不过当去年AJAX技术如火如荼，AJAX框架层出不穷，而微软又推出ASP.NET AJAX框架之后，这四个概念之间的混淆也愈发严重起来了。我经常能看到这样的问题：
+
+我在用AJAX技术时不知道怎么在UpdatePanel里……
+我用AJAX.NET框架调用We">
+<meta property="og:updated_time" content="2017-01-07T14:35:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX">
+<meta name="twitter:description" content="AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX这是我见过的混淆最多的一组概念。不过当去年AJAX技术如火如荼，AJAX框架层出不穷，而微软又推出ASP.NET AJAX框架之后，这四个概念之间的混淆也愈发严重起来了。我经常能看到这样的问题：
+
+我在用AJAX技术时不知道怎么在UpdatePanel里……
+我用AJAX.NET框架调用We">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://smuwcwt.com/2008/06/13/ajaxdotnet-aspdotnetajax/"/>
+
+  <title> AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX | 我的职业生涯 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">我的职业生涯</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2008-06-13T23:22:00+08:00" content="2008-06-13">
+              2008-06-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="AJAX-AJAX框架-AJAX-NET-Professional-ASP-NET-AJAX"><a href="#AJAX-AJAX框架-AJAX-NET-Professional-ASP-NET-AJAX" class="headerlink" title="AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX"></a>AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX</h2><p>这是我见过的混淆最多的一组概念。不过当去年AJAX技术如火如荼，AJAX框架层出不穷，而微软又推出ASP.NET AJAX框架之后，这四个概念之间的混淆也愈发严重起来了。我经常能看到这样的问题：</p>
+<ol>
+<li>我在用AJAX技术时不知道怎么在UpdatePanel里……</li>
+<li>我用AJAX.NET框架调用Web Service时……</li>
+</ol>
+<p>这是非常典型的概念混淆，上面两句话的AJAX与AJAX.NET都应该使用ASP.NET AJAX替换。关于这几个概念的区别我《深入浅出ASP.NET AJAX》系列WebCast多次进行解释，不过收效似乎并不明显。于是我打算在这里再进行一下说明：</p>
+<p>AJAX是Asynchronous JavaScript and XML缩写。这个概念代表的是一种技术，当您在说“我在项目中使用了AJAX技术时”，只是代表了您使用客户端XMLHttpRequest对象与服务器端进行异步通信。不过因为随着AJAX技术的运用往往会带来丰富的客户端效果，因此对AJAX技术的广义理解也可以认为这是一种操作客户端DOM而带来丰富效果的技术（这个“广义”的描述其实并不准确，大家明白老赵的意思就可以了）。</p>
+<p>AJAX框架是一套辅助开发人员使用AJAX技术的代码包（库，etc.）。一个AJAX框架的目的一般是对XMLHttpRequest对象的使用进行封装，并提供一些操作DOM元素或者实现特殊效果的“捷径”。成熟的AJAX框架有很多，它们可以被分为“以客户端为中心”和“面向特定服务器技术”两大类。前者的优秀代表有（排名不分先后）：Prototype、jQuery、Mootools、YUI、Dojo等等（最后两个其实更接近一套客户端界面库，也就是“广义”的AJAX框架）；而后者的典型代表既是AJAX.NET和ASP.NET AJAX了——当然，也有优秀的AJAX框架面向其他服务器技术，在此不提。</p>
+<p>AJAX.NET (Professional)是ASP.NET平台上著名的AJAX框架，诞生于2005年2月（虽然正式命名为AJAX.NET则是在两个月之后），作者为Michael Schwarz。同年10月，Michael为AJAX.NET提供了更丰富的功能（主要是安全性方面），并将其改名为AJAX.NET Professional。AJAX.NET提供的最主要的（也是唯一）的功能就是异步调用服务器端方法，可谓非常纯粹的“基于数据”的AJAX使用方式。这个框架是一个个人作品，有支持.NET 1.1和2.0的版本，它并不属于微软官方，目前已经停止更新。</p>
+<h3 id="ASP-NET-AJAX的Code"><a href="#ASP-NET-AJAX的Code" class="headerlink" title="ASP.NET AJAX的Code"></a>ASP.NET AJAX的Code</h3><p>Name为“Atlas”，在CTP向Beta版转移时曾经发生过翻天覆地的变化。ASP.NET AJAX中包含了UpdatePanel等控件，可以非常透明地为现有的ASP.NET WebForms应用程序添加AJAX效果。此外还提供了客户端异步调用Web Services的方法，使开发人员也能够使用面向数据的方式使用AJAX技术。值得一提的是ASP.NET AJAX的“附属品”相当丰富。例如ASP.NET AJAX名为“Microsoft AJAX Library”的客户端部分是一个纯客户端AJAX框架，提供了面向对象类型系统、浏览器兼容层、异步通信层等多种基础组件；ASP.NET AJAX的开源扩展包“AJAX Control Toolkit”包含了数十个可以直接使用的AJAX服务器端控件，这样开发人员能够轻松地添加丰富的客户端效果。同时，官方还为ASP.NET AJAX提供了“非正式”地扩展包，其中的History等优秀控件也将加入未来版本的ASP.NET AJAX框架中。ASP.NET AJAX是官方出品的AJAX框架，目前已经被集成到ASP.NET 3.5中去了，因此其版本号也从ASP.NET AJAX 1.0一下子“跃升为”ASP.NET AJAX 3.5。如果您看到了这些版本号也请不要疑惑，其实ASP.NET AJAX 3.5相对于ASP.NET AJAX 1.0来说只是修补了一些细小bug，几乎没有任何变化。</p>
+<p>本文转自: JeffreyZhao</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/后端开发/" rel="tag">#后端开发</a>
+          
+            <a href="/tags/net/" rel="tag">#.net</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2008/06/11/textbox-textmode-password/" rel="next" title="TextBox控件TextMode=”Password”的附值问题">
+                <i class="fa fa-chevron-left"></i> TextBox控件TextMode=”Password”的附值问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2008/06/17/hashtable-gridview/" rel="prev" title="Hashtable绑定到GridView的问题">
+                Hashtable绑定到GridView的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="smuwcwt" />
+          <p class="site-author-name" itemprop="name">smuwcwt</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX-AJAX框架-AJAX-NET-Professional-ASP-NET-AJAX"><span class="nav-number">1.</span> <span class="nav-text">AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ASP-NET-AJAX的Code"><span class="nav-number">1.1.</span> <span class="nav-text">ASP.NET AJAX的Code</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">smuwcwt</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
