@@ -331,6 +331,625 @@
             
               
                 
+                <a class="post-title-link" href="/2008/12/08/dotnet-customlize-service/" itemprop="url">
+                  安装.net自定义服务
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2008-12-08T15:08:00+08:00" content="2008-12-08">
+              2008-12-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>CMD下，找到.net framework安装的位置，一般情况下在：</p>
+<p>C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727</p>
+<p>写法:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">installutil exepostion</div></pre></td></tr></table></figure>
+<p>例如:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">installutil c:\service.exe</div></pre></td></tr></table></figure>
+<p>卸载用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">installutil c:\service.exe -u</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/11/19/sql-cur-import-database/" itemprop="url">
+                  利用游标导入数据
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2008-11-19T17:12:00+08:00" content="2008-11-19">
+              2008-11-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">declare</span> @<span class="keyword">Name</span> <span class="built_in">varchar</span>(<span class="number">20</span>),@<span class="keyword">Url</span> <span class="built_in">varchar</span>(<span class="number">200</span>)</div><div class="line"><span class="keyword">declare</span> cur <span class="keyword">cursor</span> <span class="keyword">for</span> <span class="keyword">select</span> [<span class="keyword">Name</span>],<span class="keyword">Url</span> <span class="keyword">from</span> [TableTemp]</div><div class="line"><span class="keyword">open</span> cur</div><div class="line"><span class="keyword">fetch</span> <span class="keyword">next</span> <span class="keyword">from</span> cur <span class="keyword">into</span> @<span class="keyword">Name</span>,@<span class="keyword">Url</span></div><div class="line"><span class="keyword">while</span> @@fetch_status = <span class="number">0</span></div><div class="line"><span class="keyword">begin</span></div><div class="line"></div><div class="line"><span class="keyword">Insert</span> <span class="keyword">into</span> [KeyWords](UserID,[<span class="keyword">Name</span>],<span class="keyword">Url</span>,WarningTop,BeginTime,EndTime,Remark)</div><div class="line"><span class="keyword">values</span>(</div><div class="line"> <span class="number">1</span>,</div><div class="line"> @<span class="keyword">Name</span>,</div><div class="line"> <span class="string">'domain.com'</span>,</div><div class="line"> <span class="number">10</span>,</div><div class="line"> <span class="string">'2008-11-19'</span>,</div><div class="line"> <span class="string">'2009-12-31'</span>,</div><div class="line"> @<span class="keyword">Url</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">fetch</span> <span class="keyword">next</span> <span class="keyword">from</span> cur <span class="keyword">into</span> @<span class="keyword">Name</span>,@<span class="keyword">Url</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">close</span> cur</div><div class="line"><span class="keyword">deallocate</span>  cur</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/09/19/jet-database-error-80004005/" itemprop="url">
+                  Microsoft JET Database Engine 错误 '80004005' 未指定的错误
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2008-09-19T12:29:00+08:00" content="2008-09-19">
+              2008-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><p>Windows 2003+IIS6+NTFS<br>ASP+Access</p>
+<h2 id="错误信息"><a href="#错误信息" class="headerlink" title="错误信息"></a>错误信息</h2><p>Microsoft JET Database Engine 错误 ‘80004005’ 未指定的错误</p>
+<h2 id="故障原因"><a href="#故障原因" class="headerlink" title="故障原因"></a>故障原因</h2><p>此类错误一般出现于文件系统为NTFS格式中，是IIS匿名帐号（IUSR_计算机名）对相关文件、文件夹操作权限不足引起的。</p>
+<p>一、存放数据库文件夹对IIS匿名帐号没有写入、修改权限，错误表现为无法对数据库进行更新、写入<br>二、 系统临时文件夹目录对IIS匿名帐号没有写入、修改权限，错误表现为访问服务器上任何采用Microsoft JET Database Engine 链接Access类数据库的文件都是出错。正常情况下是不会出现这个错误的，当使用某些系统垃圾清理优化工具、或其它一些因素可能会导致这个目录权限发生 改变。所以请慎重使用此类工具。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>一、检查存放Microsoft Access数据库文件的文件夹是否有对IIS匿名帐号有写入权限，如果没有，请赋于写入权限，特别是当错误信息为（Microsoft JET Database Engine 错误 ‘80004005’ 操作必须使用一个可更新的查询。）时。</p>
+<p>二、JET引擎在链接数据库的时候会在%windir%/temp/目录下创建临时文件，而IIS匿名帐号对%windir%/temp/目录操作权限不够，添加IIS匿名帐号（IUSR_计算机名）对%windir%/temp/的读写权限即可。</p>
+<p>其它一些未指定的错误，可以尝试重新注册ASP脚本解释链接库文件。<br>依顺序运行以下命令：</p>
+<p>1.regsvr32 jscript.dll<br>2.regsvr32 vbscript.dll<br>3.iisreset</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/09/03/win-2003-upload-200-limit/" itemprop="url">
+                  Windows 2003中200K上传限制解决
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2008-09-03T10:19:00+08:00" content="2008-09-03">
+              2008-09-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在Windows 2003 server上会出现上传大小受限制的问题，这是由于windows 2003 server的IIS 6做了限制所致，II6默认设置是最大只能上传200K的文件，下面介绍一下如何修改IIS6设置,以使上传不受限制。</p>
+<p>在服务器上进行如下操作：</p>
+<ol>
+<li>先在服务里关闭   iis   admin   service   服务.</li>
+<li>找到   windowssystem32inetsrv   下的   metabase.xml   文件.</li>
+<li>打开,   找到   ASPMaxRequestEntityAllowed   修改为需要的值(可修改为2M即:   2048000),   默认为:   204800,   即:   200K.</li>
+<li>然后重启   iis   admin   service   服务.   (记得还要启动IIS里网站服务)</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/08/29/img-link-border-line/" itemprop="url">
+                  图片链接虚线的解决方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2008-08-29T12:48:00+08:00" content="2008-08-29">
+              2008-08-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>WEB图片增加<a href="">链接后，鼠标点击默认会出现链接虚线，影响美观。<br>其实在<a href="">中加入： javascript:; onFocus=if(this.blur)this.blur() 即可消除虚线。</a></a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=gb2312"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>无虚线<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">http://www.smuwcwt.com</span>" <span class="attr">onFocus</span>=<span class="string">if(this.blur)this.blur()</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">http://www.smuwcwt.com/themes/mozine/style/mozine/logo.gif</span>" <span class="attr">border</span>=<span class="string">"0"</span> /&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2008/08/27/ten-methods-to-study/" itemprop="url">
+                  十个习惯让你有效地学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2008-08-27T18:05:00+08:00" content="2008-08-27">
+              2008-08-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>要看书。在成千上万的编程图书中，可能很大一部分根本毫无用处。但是仍然有很多图书对你的(编程)能力有很大的提升。我一直坚持，相比在网络上查找很多有用信息，在同类图书中查找要来得更容易更快捷。阅读技术图书可心更好地抓住核心内容。对于理论，架构和设计等方面来说，图书也一样很有帮助。只不过要找到高质量的、权威的信息，就不如网络上可供查找的范围广。</p>
+</li>
+<li><p>读代码。这也是我很喜欢的一种方式。如果我并没有几年的专业编程工作经验，在学习之初我并不会去读很多复杂的代码。如果我要是早些开始学习，我将是一个比现在更好的程序员。但是，开始时我会从一些开源项目里，去学习那些源代码(当然，这些代码不能与我的工作有关，也不是我自己写的)。要从自己会使用到的，或者自己感兴趣的程序开始这项工作。我是从 Paint.net 这个网站里开始学习的，而且已经积累了很多关于 .NET 的编程技术。</p>
+</li>
+</ol>
+<p>读别人的代码可以为你提供更多不同的工作思路，这比你完全凭自己思考得到的工作方式要多。</p>
+<ol>
+<li>写代码。谨记，要写大量的代码。从根本上来讲，最好的学习方法就是实践。如果不写代码，你根本不能把(某种语言中)内在的东西学习透彻。学习之初，可以从一些技术指南和图书中照搬一些尽量简单的程序。当然，这种照搬是要自己完全手工输入，而不是复制和粘贴，这两种之间的效果差别是很大的。这种方法的主旨就在于，使知识内在化，并思考其用法，而不是盲目照抄。学习过程中，要时常查找新的 API 调用方法，这其实是简单的事情。</li>
+</ol>
+<p>最重要的是，要写一个你自己的程序，不管它是一个简单的游戏，或者是一个参与开源项目的程序，还是一个公为你自己使用的简单插件。用不同的方式来写程序，尽量尝试使用新的技术，新的技巧，新的设计方式。一定要让现在的项目比以往的项目更好。想要成一个优秀的开发者，这一点是核心。</p>
+<ol>
+<li>与其他开发者交流。像 Apple，微软，Google 等大公司一样的新闻描述的一样，(与其他开发者交流)可以让你解决一些复杂的问题。虽然这并不能让你感觉到自己已经成一个团队或是社区的成员，但是这种方法可以让你接触到更多不同的想法。</li>
+</ol>
+<p>不同类型的项目要求不同的设计方法，代码技术，开发流程和设计思想。如果你工作在一个小团队里，你不必与太多的人接触，只要在用户群会议中找到一些人(来讨论)即可。如果这样还不行的话，参与到在线论坛中与其他人讨论(这时你需要更努力地寻找高质量的讨论内容)。</p>
+<ol>
+<li>教会别人。相对于仅仅读代码之类的工作，教其他人学习可以让你更深入地学习某个技术，这种方法有着非凡的效果。教会别人某个技术，同样也会让你更专注于这种技术，并且可以比别人更深层次地理解它。同样你也会面对一些问题。</li>
+</ol>
+<p>“如果你不能向一个六岁的儿童解析清楚一个概念，那么其实是你并没有完全理解它。”Albert Einstein说。</p>
+<p>教学场景可以是无穷无尽的：与工作搭档一对一交流，休息碰面，非正式周会，学习茶会，教室，讨论发表会，等等。每周在相同理念开发者之间举办一次30分钟的非正式会议怎么样？每周，让几个人来就他们想要更深入了解话题，向大家传授这些技术知识，并且展开讨论。如果你知道你将要向团队成员们传授正学学习的知识，你是不是更想要了解这项技术的每个细节呢？</p>
+<ol>
+<li><p>收听网络电台。如果你有空闲的时间，可以订阅网络电台节目。我现在最喜欢的编程节目就是 .Net Rocks。这个节目还会做一些视频节目，叫做 dnrTV 。这样会让你即时捕捉到最新最好的技术。一个人是不能学习到所有知识的，而网络电台刚是一个学习了解广泛知识的途径。</p>
+</li>
+<li><p>阅读博客。博客远远比阅读者要多，但是其中有一些却是极其优秀的。我这里不并不是要推荐博客，因为网络上已经有了足够多的博客。这是与真正在开发你所喜欢和使用的软件的开者联系的好方法。</p>
+</li>
+<li><p>学习新的语言。即使你已经在 C(++,#) / JAVA 等语言上有很好的造诣，仍然有很多其他可以解决问题的编程语言。学习新的语言，是对你已有思维方式的挑战。这不仅仅是另一种语言，更是对思维的重新架构。的确，所有的语言最后都会被编译成汇编程序，但是这并不意味着高级语言毫无价值。</p>
+</li>
+<li><p>学习不正确的方式。除了要学习应该怎么做，还要学习不应该怎么做。经常阅读 Dailywtf.com ，学习你并不知道的经验与教训。学习适当的面向对象设计方式，代码写作方式，和必须要写的代码等，是很好的方式，但是如果不细心的话也容易养成不良习惯。学习认识不正确的思路是负责项目开发至关重要的一环。</p>
+</li>
+</ol>
+<p>维基百科对很多觉的不正确方式有十分透彻的分类。</p>
+<ol>
+<li>要谦虚。</li>
+</ol>
+<p>学习，意味着：</p>
+<p>用更好的知识代替不完美的知识<br>增长你所不知道的知识<br>只有承认自己有所不足，才能有学习的动力。归根到底，就是谦虚，不对吗？如果你开始认为你已经掌握了所有需要的知识，那么你就危险了。真正的学习是如饥似渴地追逐知识并使其内在化，这需要很大的努力。我们都知道这一点，但是要必须时常不断地提醒自己。</p>
+<p>本文作者：<br>Ben Watson，知名开发者。任职于GeoEye，是其所属开发团队的领导者。本文发表于他自己的博客，阐述了十种学习新技术的方法。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2008/08/02/css-img-button/" itemprop="url">
                   另外一种通过CSS实现按钮图片效果
                 </a>
@@ -616,664 +1235,13 @@ application/vnd.wap.wmlsc .wmlsc
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/07/24/firefox-style-top-left-fix/" itemprop="url">
-                  firefox下style.top/style.left的兼容问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2008-07-24T19:34:00+08:00" content="2008-07-24">
-              2008-07-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>浏览器的兼容问题,一直被认为是从业者的严峻考验,很多地方需要fix的…</p>
-<p>今天就碰到一个很诡异的问题,<br>1, 在FireFox下getPosition方法获取的位置会比IE下多出1像素<br>2, 单纯的控制隐藏层显示时的位置,会发现如果只写数字定位在FireFox下无法正确显示,经过多方查询资料发现在FireFox下需要讲像素使用px结束,如下代码红色部分…</p>
-<p>getPosition方法返回对象(元素)的位置…在此记录…</p>
-<pre><code>&lt;script&gt;
-function getPosition(sender) {
-    var e=sender,E=e;
-    var x=e.offsetLeft;
-    var y=e.offsetTop;
-    while (e=e.offsetParent) {
-        var P=e.parentNode;
-        while (P!=(E=E.parentNode)) {
-            x-=E.scrollLeft;
-            y-=E.scrollTop;
-        }
-        x+=e.offsetLeft;
-        y+=e.offsetTop;
-        E=e;
-    }
- return {&quot;x&quot;:x,&quot;y&quot;:y};
-}
-function imgOnClick(){
- var obj = document.getElementById(&apos;imgCompany&apos;);
- var ohidden = document.getElementById(&apos;hiddenCompanyPicture&apos;);
- var iWidth = getPosition(obj).x;
- var iHeight = getPosition(obj).y;
- var iLHeight,iLWidth;
-
- iLHeight = iHeight - 80;
- iLWidth = iWidth + 160;
-
- ohidden.style.top = iLHeight + &apos;px&apos;;
- ohidden.style.left = iLWidth + &apos;px&apos;;
- ohidden.style.display = &apos;inline&apos;;
-
-}
-function imgClose()
-{
- var ohidden = document.getElementById(&apos;hiddenCompanyPicture&apos;);
- ohidden.style.display = &apos;none&apos;;
-}
-&lt;/script&gt;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/07/23/flv-server2003/" itemprop="url">
-                  解决FLV格式文件上传服务器后无法播放问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2008-07-23T18:31:00+08:00" content="2008-07-23">
-              2008-07-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>FLV格式文件上传服务器后不能播放因为国内大多都是Win2003的主机.默认是没有指定输出FLV这种格式的虽然FTP里面可以看见,但无法通过http访问,也就无法播放了.</p>
-<p>[原因：WIN2003加强了IIS6的MIME验证，一切未注册扩展文件格式统统显示404错误。手动在IIS中HTTP头-&gt;MIME添加MIME影射关系，MIME类型: video/x-flv 扩展名:.flv，即可通过Flash7+客户端Load进来播放]</p>
-<p>[办法解决“虚拟主机都不支持Flv格式文件”的问题：比如你的Flv文件名称是a.flv,在虚拟主机上建一个名为“a.flv”的目录，在此目录下放你的Flv格式文件，将其改名为：index.htm,这样就行了，播放器中的文件名保持原样不动 ]</p>
-<p>[代码如下]</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
-    var swf_file=&apos;/movie/vcastr.swf&apos;;
-    var swf_width=153;
-    var swf_height=122;
-    var files=&apos;/movie/1.flv&apos;;
-    var texts=&apos;测试&apos;;
-    document.write(&apos;&lt;object style=&quot;border:solid 1px #000000;&quot;
-classid=&quot;clsid:d27cdb6e-ae6d-11cf-96b8-444553540000&quot; codebase=&quot;http://fpdownload.macromedia.com/pub/shockwave/cabs
-/flash/swflash.cab#version=6,0,0,0&quot; width=&quot;&apos;+ swf_width +&apos;&quot; height=&quot;&apos;+ swf_height +&apos;&quot; title=&quot;测试&quot;&gt;&apos;);
-    document.write(&apos;&lt;param name=&quot;movie&quot; value=&quot;&apos;+swf_file+&apos;&quot;&gt;&lt;param name=&quot;quality&quot; value=&quot;high&quot;&gt;&apos;);
-    document.write(&apos;&lt;param name=&quot;menu&quot; value=&quot;true&quot;&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;&gt;&apos;);
-    document.write(&apos;&lt;param name=&quot;FlashVars&quot; value=&quot;vcastr_file=&apos;+files+&apos;&amp;vcastr_title=&apos;+texts+&apos;&amp;IsAutoPlay=1&amp;IsContinue=1&quot;&gt;&apos;);
-    document.write(&apos;&lt;embed src=&quot;&apos;+swf_file+&apos;&quot; allowFullScreen=&quot;true&quot;
-FlashVars=&quot;vcastr_file=&apos;+files+&apos;&amp;vcastr_title=&apos;+texts+&apos;&quot; menu=&quot;false&quot;
-quality=&quot;high&quot; width=&quot;&apos;+ swf_width +&apos;&quot; height=&quot;&apos;+ swf_height +&apos;&quot;
-type=&quot;application/x-shockwave-flash&quot; pluginspage=&quot;
-http://www.macromedia.com/go/getflashplayer&quot; /&gt;&apos;);
-    document.write(&apos;&lt;/object&gt;&apos;);
-&lt;/script&gt;
-</code></pre><p>其中 ‘/movie/vcastr.swf’ 为播放器的文件</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/06/26/dev-version/" itemprop="url">
-                  开发者也有版本之分,你属于哪个版本的程序员?
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2008-06-26T08:27:00+08:00" content="2008-06-26">
-              2008-06-26
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>国外开发者博客中有一篇有趣的文章，将程序员按水平像软件版本号那样划分为不同的版本。相对于在招聘时分为初级，中级，高级程序员，直接表明需要某种语言N版本的程序员或许更方便直接。根据作者的观点，可将WEB开发者大致分为以下几个版本：</p>
-<p><em>Alpha</em>：阅读过一些专业书籍，大多数能用Dreamweaver或者FrontPage帮朋友制作一些Web页面。但在他们熟练掌握HTML代码以前，你大概不会雇佣他们成为职业的WEB制作人员。</p>
-<p><em>Beta</em>：已经比较擅长整合站点页面了，在HTML技巧方面也有一定造诣，但还是用Tables来制作页面，不了解CSS，在面对动态页面或数据库连接时还是底气不足。</p>
-<p><em>Pre Version 1 (0.1)</em>：比Beta版的开发者水平要高。熟悉HTML，开始了解CSS是如何运作的，懂一点JavaScript，但还是基于业余水准，逐步开始关心动态站点搭建和数据库连接的知识。这个版本的WEB开发人员还远不能成为雇主眼中的香饽饽。</p>
-<p><em>1.0</em>:  能够基本把控整个站点开发，针对每个问题尽可能的找到最直接的解决办法。但对可测性，可扩展性以及在不同(层)框架下如何选择最合适的WEB设计工具尚无概念。这个版本的WEB开发者有良好的技术基础，需要有进一步的帮助和指导。</p>
-<p><em>2.0</em>：懂面向对象的编程语言，理解分层开发的必要性，关注代码分离，对问题寻找更完美的解决方法，偶然也会考虑设计模式的问题，但对此仍然概念不清。属于优秀的初级开发者，能完成较松散的代码开发(相对大型严谨的站点开发而言)，在面对较复杂问题寻找解决办法时需要周边人的帮助。</p>
-<p><em>3.0</em>：开始较为深入的理解面向对象编程和设计模式，了解他们的用途，当看到好的设计模式时能看透其本质，逐步关注分层的架构解决办法和可测试性。理解不同的开发语言并能说出他们的异同(例如各自的优势)。属于优秀的中级别开发者，雇主也确信他们最终能找到问题的解决办法，这个版本的人可以给1.0和2.0的开发者以指导。但他们对架构的理解仍然不够清晰，值得一提的是，只要给予一些指导，他们能很快理解并熟记做出的决定，以及选定方案的优势所在。</p>
-<p><em>4.0</em>：理解模式，重视用户的反馈。着手研究方法论，架构设计和软件开发的最佳入口。头脑中已经形成了超越开发语言，技术架构的整体方案，可根据需求解构程序。能从理论的角度，不同模式如何融合成最佳形态，将多种X-驱动的模式应用到不同的方案中。是精通多语言的高手，理解不同系统和方法论的细微差别，属于高级程序员。这个级别的人能够轻易的辅导2.0和3.0的程序员，将他们推向更高的级别。</p>
-<p><em>5.0</em>：从系统的角度考虑问题。对各种系统结构有深入研究，能对整个代码架构中的问题进行改进。在团队粘合性以及代码安全性方面有杰出贡献。对1.0到4.0版本的开发人员出现的问题能及时察觉，让整个团队保持积极性且保持兴奋的状态创建软件解决办法。举例来说，他们总是对新的技术和信息保持饥渴状态，试图用最简便的方案解决开发任务。在整个IT团队中获得信任，属于高级程序员和架构师。</p>
-<p>那么，您属于哪个版本的程序员呢？</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/06/17/hashtable-gridview/" itemprop="url">
-                  Hashtable绑定到GridView的问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2008-06-17T14:14:00+08:00" content="2008-06-17">
-              2008-06-17
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Hashtable绑定到GridView的出现:</p>
-<p>ID 为“gvList”的 GridView 的数据源没有任何可用来生成列的属性或特性。请确保您的数据源有内容。</p>
-<p>原因是:</p>
-<pre><code>AutoGenerateColumns=&quot;true&quot;
-</code></pre><p>一定要改成:</p>
-<pre><code>AutoGenerateColumns=&quot;false&quot;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/06/13/ajaxdotnet-aspdotnetajax/" itemprop="url">
-                  AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2008-06-13T23:22:00+08:00" content="2008-06-13">
-              2008-06-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="AJAX-AJAX框架-AJAX-NET-Professional-ASP-NET-AJAX"><a href="#AJAX-AJAX框架-AJAX-NET-Professional-ASP-NET-AJAX" class="headerlink" title="AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX"></a>AJAX / AJAX框架 / AJAX.NET (Professional) / ASP.NET AJAX</h2><p>这是我见过的混淆最多的一组概念。不过当去年AJAX技术如火如荼，AJAX框架层出不穷，而微软又推出ASP.NET AJAX框架之后，这四个概念之间的混淆也愈发严重起来了。我经常能看到这样的问题：</p>
-<ol>
-<li>我在用AJAX技术时不知道怎么在UpdatePanel里……</li>
-<li>我用AJAX.NET框架调用Web Service时……</li>
-</ol>
-<p>这是非常典型的概念混淆，上面两句话的AJAX与AJAX.NET都应该使用ASP.NET AJAX替换。关于这几个概念的区别我《深入浅出ASP.NET AJAX》系列WebCast多次进行解释，不过收效似乎并不明显。于是我打算在这里再进行一下说明：</p>
-<p>AJAX是Asynchronous JavaScript and XML缩写。这个概念代表的是一种技术，当您在说“我在项目中使用了AJAX技术时”，只是代表了您使用客户端XMLHttpRequest对象与服务器端进行异步通信。不过因为随着AJAX技术的运用往往会带来丰富的客户端效果，因此对AJAX技术的广义理解也可以认为这是一种操作客户端DOM而带来丰富效果的技术（这个“广义”的描述其实并不准确，大家明白老赵的意思就可以了）。</p>
-<p>AJAX框架是一套辅助开发人员使用AJAX技术的代码包（库，etc.）。一个AJAX框架的目的一般是对XMLHttpRequest对象的使用进行封装，并提供一些操作DOM元素或者实现特殊效果的“捷径”。成熟的AJAX框架有很多，它们可以被分为“以客户端为中心”和“面向特定服务器技术”两大类。前者的优秀代表有（排名不分先后）：Prototype、jQuery、Mootools、YUI、Dojo等等（最后两个其实更接近一套客户端界面库，也就是“广义”的AJAX框架）；而后者的典型代表既是AJAX.NET和ASP.NET AJAX了——当然，也有优秀的AJAX框架面向其他服务器技术，在此不提。</p>
-<p>AJAX.NET (Professional)是ASP.NET平台上著名的AJAX框架，诞生于2005年2月（虽然正式命名为AJAX.NET则是在两个月之后），作者为Michael Schwarz。同年10月，Michael为AJAX.NET提供了更丰富的功能（主要是安全性方面），并将其改名为AJAX.NET Professional。AJAX.NET提供的最主要的（也是唯一）的功能就是异步调用服务器端方法，可谓非常纯粹的“基于数据”的AJAX使用方式。这个框架是一个个人作品，有支持.NET 1.1和2.0的版本，它并不属于微软官方，目前已经停止更新。</p>
-<h3 id="ASP-NET-AJAX的Code"><a href="#ASP-NET-AJAX的Code" class="headerlink" title="ASP.NET AJAX的Code"></a>ASP.NET AJAX的Code</h3><p>Name为“Atlas”，在CTP向Beta版转移时曾经发生过翻天覆地的变化。ASP.NET AJAX中包含了UpdatePanel等控件，可以非常透明地为现有的ASP.NET WebForms应用程序添加AJAX效果。此外还提供了客户端异步调用Web Services的方法，使开发人员也能够使用面向数据的方式使用AJAX技术。值得一提的是ASP.NET AJAX的“附属品”相当丰富。例如ASP.NET AJAX名为“Microsoft AJAX Library”的客户端部分是一个纯客户端AJAX框架，提供了面向对象类型系统、浏览器兼容层、异步通信层等多种基础组件；ASP.NET AJAX的开源扩展包“AJAX Control Toolkit”包含了数十个可以直接使用的AJAX服务器端控件，这样开发人员能够轻松地添加丰富的客户端效果。同时，官方还为ASP.NET AJAX提供了“非正式”地扩展包，其中的History等优秀控件也将加入未来版本的ASP.NET AJAX框架中。ASP.NET AJAX是官方出品的AJAX框架，目前已经被集成到ASP.NET 3.5中去了，因此其版本号也从ASP.NET AJAX 1.0一下子“跃升为”ASP.NET AJAX 3.5。如果您看到了这些版本号也请不要疑惑，其实ASP.NET AJAX 3.5相对于ASP.NET AJAX 1.0来说只是修补了一些细小bug，几乎没有任何变化。</p>
-<p>本文转自: JeffreyZhao</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2008/06/11/textbox-textmode-password/" itemprop="url">
-                  TextBox控件TextMode=”Password”的附值问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2008-06-11T10:23:00+08:00" content="2008-06-11">
-              2008-06-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前台:</p>
-<pre><code>&lt;asp:TextBox ID=&quot;tbPassHash&quot; runat=&quot;server&quot; Width=&quot;250&quot; MaxLength=&quot;100&quot; TextMode=&quot;Password&quot; /&gt;
-</code></pre><p>后台:</p>
-<pre><code>this.tbPassHash.Attributes.Add(&quot;value&quot;, &quot;123456&quot;); //附值
-this.tbPassHash.Attributes.Remove(&quot;value&quot;); //清除值
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1312,7 +1280,7 @@ this.tbPassHash.Attributes.Remove(&quot;value&quot;); //清除值
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1322,7 +1290,7 @@ this.tbPassHash.Attributes.Remove(&quot;value&quot;); //清除值
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
